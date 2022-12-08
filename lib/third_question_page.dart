@@ -127,7 +127,7 @@ class _ThirdQuestionPageState extends State<ThirdQuestionPage> {
                       print('correctAnswers list is $correctAnswers');
                     },
 
-                      child: const Text('Previous Question'),),
+                      child: const Text('Submit'),),
                   ),
                 ],
               )

@@ -90,6 +90,7 @@ class _FirstQuestionPageState extends State<FirstQuestionPage> {
                   value: optionsList[0]['option4'].toString(),
                   groupValue: answer1,
                   onChanged: (String? value){
+
                     setState(() {
                       if(candidateAnswers.isNotEmpty){
                         candidateAnswers.removeLast();
