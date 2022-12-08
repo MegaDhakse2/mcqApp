@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mcq_app/first_question_page.dart';
 import 'package:mcq_app/result_page.dart';
 import 'package:mcq_app/second_question_page.dart';
+import 'package:mcq_app/third_question_page.dart';
 import 'package:mcq_app/welcome_page.dart';
-import 'global_values.dart';
 
 
 
@@ -15,10 +15,9 @@ void main(){
     routes: <String, WidgetBuilder> {
       '/loginPage' : (BuildContext context) =>  const LoginPage(),
       '/welcomePage' : (BuildContext context) => const WelcomePage(),
-      '/firstQuestionPage' : (BuildContext context) =>
-          FirstQuestionPage(question1: question[0], option1q1: options[0]['option1'],option2q1:options[0]['option2'],
-                                                   option3q1: options[0]['option3'], option4q1:options[0]['option4'], ),
-      '/secondQuestionPage' : (BuildContext context) => SecondQuestionPage(question2: question[1],),
+      '/firstQuestionPage' : (BuildContext context) => const FirstQuestionPage(),
+      '/secondQuestionPage' : (BuildContext context) => const SecondQuestionPage(),
+      '/thirdQuestionPage' : (BuildContext context) => const ThirdQuestionPage(),
       '/resultPage' : (BuildContext context) => const ResultPage(),
     },
   ),

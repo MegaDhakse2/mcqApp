@@ -4,12 +4,12 @@ import 'global_values.dart';
 
 
 class FirstQuestionPage extends StatefulWidget {
-  final String question1;
-  final String option1q1;
-  final String option2q1;
-  final String option3q1;
-  final String option4q1;
-   const FirstQuestionPage({Key? key, required this.question1, required this.option1q1, required this.option2q1, required this.option3q1, required this.option4q1}) : super(key: key);
+  // final String question1;
+  // final String option1q1;
+  // final String option2q1;
+  // final String option3q1;
+  // final String option4q1;
+   const FirstQuestionPage({Key? key,}) : super(key: key);
 
   @override
   State<FirstQuestionPage> createState() => _FirstQuestionPageState();
@@ -21,17 +21,19 @@ class _FirstQuestionPageState extends State<FirstQuestionPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch:Colors.cyan),
-      title: 'welcome page',
+      title: 'First Page',
       home: SafeArea(
         child: Scaffold(
           appBar: AppBar(title: const Text('Question 1'),),
           body: Column(
             children: [
-              Text('Q:   ${widget.question1}', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w400, ),),
+              const SizedBox(height: 70,),
+
+              Text('Q:   ${questions[0]}', style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w400, ),),
 
               RadioListTile(
-                title: Text(widget.option1q1),
-                  value: widget.option1q1,
+                title: Text(optionsList[0]['option1']),
+                  value: optionsList[0]['option1'].toString(),
                   groupValue: answer1,
                   onChanged: (String? value){
                     setState(() {
@@ -39,35 +41,17 @@ class _FirstQuestionPageState extends State<FirstQuestionPage> {
                         candidateAnswers.removeLast();
                       }
                       answer1 = value;
-                      print('answers list before adding option1 ${candidateAnswers.toString()}');
-                      candidateAnswers.add(answer1.toString());
+                      print('candidateAnswers list before adding option1 ${candidateAnswers.toString()}');
+                      candidateAnswers.insert(0, answer1.toString());
                       print('candidate selected option is $answer1');
-                      print('answers list after adding option1 ${candidateAnswers.toString()}');
-
-                    });
-                  }
-              ),
-              RadioListTile(
-                title: Text(widget.option2q1),
-                  value: widget.option2q1,
-                  groupValue: answer1,
-                  onChanged: (String? value){
-                    setState(() {
-                      if(candidateAnswers.isNotEmpty){
-                        candidateAnswers.removeLast();
-                      }
-                      answer1 = value;
-                      print('answers list before adding option1 ${candidateAnswers.toString()}');
-                      candidateAnswers.add(answer1.toString());
-                      print('candidate selected option is $answer1');
-                      print('answers list after adding option2 ${candidateAnswers.toString()}');
+                      print('candidateAnswers list after adding option1 ${candidateAnswers.toString()}');
 
                     });
                   }
               ),
               RadioListTile(
-                title: Text(widget.option3q1),
-                  value: widget.option3q1,
+                title: Text(optionsList[0]['option2']),
+                  value: optionsList[0]['option2'].toString(),
                   groupValue: answer1,
                   onChanged: (String? value){
                     setState(() {
@@ -75,17 +59,17 @@ class _FirstQuestionPageState extends State<FirstQuestionPage> {
                         candidateAnswers.removeLast();
                       }
                       answer1 = value;
-                      print('answers list before adding option1 ${candidateAnswers.toString()}');
-                      candidateAnswers.add(answer1.toString());
+                      print('candidateAnswers list before adding option1 ${candidateAnswers.toString()}');
+                      candidateAnswers.insert(0, answer1.toString());
                       print('candidate selected option is $answer1');
-                      print('answers list after adding option2 ${candidateAnswers.toString()}');
+                      print(' candidateAnswers list after adding option2 ${candidateAnswers.toString()}');
 
                     });
                   }
               ),
               RadioListTile(
-                title: Text(widget.option4q1),
-                  value: widget.option4q1,
+                title: Text(optionsList[0]['option3']),
+                  value: optionsList[0]['option3'].toString(),
                   groupValue: answer1,
                   onChanged: (String? value){
                     setState(() {
@@ -93,10 +77,28 @@ class _FirstQuestionPageState extends State<FirstQuestionPage> {
                         candidateAnswers.removeLast();
                       }
                       answer1 = value;
-                      print('answers list before adding option1 ${candidateAnswers.toString()}');
-                      candidateAnswers.add(answer1.toString());
+                      print('candidateAnswers list before adding option1 ${candidateAnswers.toString()}');
+                      candidateAnswers.insert(0, answer1.toString());
                       print('candidate selected option is $answer1');
-                      print('answers list after adding option2 ${candidateAnswers.toString()}');
+                      print('candidateAnswers list after adding option2 ${candidateAnswers.toString()}');
+
+                    });
+                  }
+              ),
+              RadioListTile(
+                title: Text(optionsList[0]['option4']),
+                  value: optionsList[0]['option4'].toString(),
+                  groupValue: answer1,
+                  onChanged: (String? value){
+                    setState(() {
+                      if(candidateAnswers.isNotEmpty){
+                        candidateAnswers.removeLast();
+                      }
+                      answer1 = value;
+                      print('candidateAnswers list before adding option1 ${candidateAnswers.toString()}');
+                      candidateAnswers.insert(0, answer1.toString());
+                      print('candidate selected option is $answer1');
+                      print('candidateAnswers list after adding option2 ${candidateAnswers.toString()}');
 
                     });
                   }
@@ -108,6 +110,8 @@ class _FirstQuestionPageState extends State<FirstQuestionPage> {
                     alignment: Alignment.bottomLeft,
                     child: TextButton(onPressed: () {
                       Navigator.maybePop(context);
+                      print('candidateAnswers list is $candidateAnswers');
+                      print('correctAnswers list is $correctAnswers');
                     },
 
                       child: const Text('Go to welcome page'),),
@@ -117,8 +121,14 @@ class _FirstQuestionPageState extends State<FirstQuestionPage> {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: ElevatedButton(onPressed: () {
-                      Navigator.pushNamed(context,  '/resultPage');
-                    },
+                      Navigator.pushNamed(context,  '/secondQuestionPage');
+                      correctAnswers.add(option1q1);
+                      if(candidateAnswers.isEmpty){
+                        candidateAnswers.add('');
+                        print('candidateAnswers is empty ${candidateAnswers[0]}');
+                      }
+                      print('candidateAnswers list is $candidateAnswers');
+                      print('correctAnswers list is $correctAnswers');                    },
 
                       child: const Text('Next Question'),),
                   ),
